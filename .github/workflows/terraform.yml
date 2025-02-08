@@ -35,7 +35,7 @@ jobs:
       working-directory: ./dev
 
     - name: Terraform Format (Dev)
-      run: terraform fmt -check -recursive
+      run: terraform fmt -recursive -check
       working-directory: ./dev
 
     - name: Terraform Plan (Dev)
@@ -72,7 +72,7 @@ jobs:
       working-directory: ./prod
 
     - name: Terraform Format (Prod)
-      run: terraform fmt -check -recursive
+      run: terraform fmt -recursive -check
       working-directory: ./prod
 
     - name: Terraform Plan (Prod)
@@ -109,7 +109,7 @@ jobs:
       working-directory: ./staging
 
     - name: Terraform Format (Staging)
-      run: terraform fmt -check -recursive
+      run: terraform fmt -recursive -check
       working-directory: ./staging
 
     - name: Terraform Plan (Staging)
