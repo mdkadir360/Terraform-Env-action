@@ -27,24 +27,44 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Terraform
+    - name: 'Terraform Setup'
       uses: hashicorp/setup-terraform@v1
-     
-    - name: Terraform Init (Dev)
-      run: terraform init
-      working-directory: ./dev
 
-    - name: Terraform Format (Dev)
-      run: terraform fmt -recursive -check
-      working-directory: ./dev
+    - name: 'Terraform Format'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'fmt'
+        tf_actions_working_dir: "./dev"
 
-    - name: Terraform Plan (Dev)
-      run: terraform plan 
-      working-directory: ./dev
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: "./dev"
 
-    - name: Terraform Apply (Dev)
-      run: terraform apply -auto-approve 
-      working-directory: ./dev
+    - name: 'Terraform Validate'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: "./dev"
+
+    - name: 'Terraform Plan'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'plan'
+        tf_actions_working_dir: "./dev"
+
+    - name: 'Terraform Apply'
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'apply'
+        tf_actions_working_dir: "./dev"
 
   terraform-prod:
     name: 'Terraform - Prod'
@@ -64,24 +84,44 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Terraform
+    - name: 'Terraform Setup'
       uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform Init (Prod)
-      run: terraform init
-      working-directory: ./prod
+    - name: 'Terraform Format'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'fmt'
+        tf_actions_working_dir: "./prod"
 
-    - name: Terraform Format (Prod)
-      run: terraform fmt -recursive -check
-      working-directory: ./prod
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: "./prod"
 
-    - name: Terraform Plan (Prod)
-      run: terraform plan
-      working-directory: ./prod
+    - name: 'Terraform Validate'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: "./prod"
 
-    - name: Terraform Apply (Prod)
-      run: terraform apply -auto-approve
-      working-directory: ./prod
+    - name: 'Terraform Plan'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'plan'
+        tf_actions_working_dir: "./prod"
+
+    - name: 'Terraform Apply'
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'apply'
+        tf_actions_working_dir: "./prod"
 
   terraform-staging:
     name: 'Terraform - Staging'
@@ -101,21 +141,41 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Terraform
+    - name: 'Terraform Setup'
       uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform Init (Staging)
-      run: terraform init
-      working-directory: ./staging
+    - name: 'Terraform Format'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'fmt'
+        tf_actions_working_dir: "./staging"
 
-    - name: Terraform Format (Staging)
-      run: terraform fmt -recursive -check
-      working-directory: ./staging
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: "./staging"
 
-    - name: Terraform Plan (Staging)
-      run: terraform plan
-      working-directory: ./staging
+    - name: 'Terraform Validate'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: "./staging"
 
-    - name: Terraform Apply (Staging)
-      run: terraform apply -auto-approve
-      working-directory: ./staging
+    - name: 'Terraform Plan'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'plan'
+        tf_actions_working_dir: "./staging"
+
+    - name: 'Terraform Apply'
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: latest
+        tf_actions_subcommand: 'apply'
+        tf_actions_working_dir: "./staging"
