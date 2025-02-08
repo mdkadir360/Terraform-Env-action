@@ -63,6 +63,7 @@ jobs:
     name: 'Terraform - Prod'
     runs-on: ubuntu-latest
     environment: production
+    needs: terraform-dev
     env:
        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -113,6 +114,7 @@ jobs:
     name: 'Terraform - Staging'
     runs-on: ubuntu-latest
     environment: staging
+    needs: terraform-prod
     env:
        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
