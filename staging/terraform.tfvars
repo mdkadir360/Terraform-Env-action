@@ -38,14 +38,7 @@ pip = {
     sku                 = "Basic"
 
   }
-   pip3 = {
-    name                = "frontend-stagepip3"
-    resource_group_name = "kadir-stage-rg"
-    location            = "canada central"
-    allocation_method   = "Static"
-    sku                 = "Basic"
 
-  }
 
 }
 nic = {
