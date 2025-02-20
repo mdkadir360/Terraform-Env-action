@@ -5,10 +5,10 @@ provider "azurerm" {
 
 terraform {
   backend "azurerm" {
-    resource_group_name   = "storage"
-    storage_account_name  = "2525storage"
-    container_name        = "stage"
-    key                   = "stage-terraform.tfstate"
+    resource_group_name   = "mat-delete-krna"
+    storage_account_name  = "kadirst25"
+    container_name        = "con"
+    key                   = "dev3-terraform.tfstate"
   }
   
 }
